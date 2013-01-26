@@ -1,0 +1,27 @@
+<html>
+	<center>
+		<h1>
+			HybridCMS Template test.
+		</h1>
+	</center>
+	<br />
+	Hotel-<br />
+	Hotel name: {$site->name}<br />
+	Hotel desc: {$site->desc}<br />
+	Hotel url:  {$site->path}<br />
+	Hotel tpl:  {$site->tpl}<br />
+	<br />
+	Emulator-<br />
+	Emulator ip: {$emu->ip}<br />
+	Emulator port: {$emu->port}<br />
+	Emulator mus: {$emu->mus}<br />
+	<br />
+	Database-<br />
+	Database driver: {$db->driver}<br />
+	
+	
+	<br />
+	<i>
+		Seems like it works? View: <b>{$site->path}/pub/{$site->tpl}/test.html</b>
+	</i>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>{hotelName} - Community</title>
+        
+        <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/common.css" type="text/css">
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs2.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/visual.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/common.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/fullcontent.js"></script>
+        
+        <script type="text/javascript">
+            document.habboLoggedIn = true;
+            var habboName = "{username}";
+            var habboId = {userid};
+            var habboReqPath = "";
+            var habboStaticFilePath = "{url}/app/tpl/skins/Habbo";
+            var habboImagerUrl = "http://www.habbo.com/habbo-imaging/";
+            var habboPartner = "";
+            var habboDefaultClientPopupUrl = "{url}/client";
+            window.name = "habboMain";
+            if (typeof HabboClient != "undefined") {
+                HabboClient.windowName = "eac955c8dbc88172421193892a3e98fc7402021a";
+                HabboClient.maximizeWindow = true;
+            }
+        </script>
+        
+        <!--[if IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie8.css" type="text/css">
+        <![endif]-->
+        <!--[if lt IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie.css" type="text/css" />
+        <![endif]-->
+        <!--[if lt IE 7]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie6.css" type="text/css" />
+            <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/pngfix.js"></script>
+            <script type="text/javascript">
+                try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {}
+            </script>
+            <style type="text/css">
+                body { behavior: url({url}/app/tpl/skins/Habbo/js/csshover.htc); }
+            </style>
+        <![endif]-->
+    </head>
+    
+    <body id="home">
+    
+        <div id="overlay"></div>
+        <div id="header-container">
+            <div id="header" class="clearfix">
+                <h1><a href="{url}/"></a></h1>
+                <div id="subnavi">
+                    <div id="subnavi-user">
+                        <div style="margin-top:7px"><b>Fact:</b> {hotelName} Hotel opened on -- at --!</div>
+                    </div>
+                    <div id="subnavi-search">
+                        <div id="subnavi-search-upper">
+                            <ul id="subnavi-search-links">
+                                <li><a href="{url}/logout" style="color:#000">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="to-hotel">
+                        <a href="{url}/api.php" class="new-button green-button" target="eac955c8dbc88172421193892a3e98fc7402021a" onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {hotelName} Hotel</b><i></i></a>
+                    </div>
+                </div>
+                <ul id="navi">
+                    <li class="metab"><a href="{url}/me">{username}</a><span></span></li>
+                    <li class="selected"><strong>Community</strong><span></span></li>
+                </ul>
+                <div id="habbos-online"><div class="rounded"><span>{online} members online</span></div></div>
+            </div>
+        </div>
+        <div id="content-container">
+            <div id="navi2-container" class="pngbg">
+                <div id="navi2" class="pngbg clearfix">
+                    <ul>
+                        <li class=""><a href="{url}/community">Community</a></li>
+                        <li class=""><a href="{url}/news">News</a></li>
+                        <li class=" selected last">Staff</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="container">
+                <div id="content" style="position: relative" class="clearfix">
+                    <div id="column1" class="column">
+                        <?php
+                            $GetRanks = mysql_query("SELECT id,name FROM ranks WHERE id > 3 ORDER BY id DESC");
+                            while($Ranks = mysql_fetch_assoc($GetRanks))
+                            {
+                                echo "<div class=\"habblet-container \"><div class=\"cbb clearfix blue \"><h2 class=\"title\">{$Ranks['name']}s</h2><div style=\"padding:5px\"><p>";
+                                $GetUsers = mysql_query("SELECT username,motto,rank,last_online,online,look FROM users WHERE rank = {$Ranks['id']}");
+                                while($Users = mysql_fetch_assoc($GetUsers))
+                                {
+                                    if($Users['online'] == 1){ $OnlineStatus = "<font color=\"darkgreen\"><b>Online</b></font>"; } else { $OnlineStatus = "<font color=\"darkred\"><b>Offline</b></font>"; }
+                                    echo "<img style=\"position:absolute;\" src=\"http://www.habbo.com/habbo-imaging/avatarimage?figure={$Users['look']}&action=wav&direction=2&head_direction=3&gesture=srp&size=l\">"
+                                        ."<p style=\"margin-left:80px;margin-top:20px;\">Username: <strong>{$Users['username']}</strong><br>Motto: <strong>{$Users['motto']}</strong><br><small>Last Online: ". date("D, d F Y H:i (P)", $Users['last_online']) ."</small></p>"
+                                        ."<p style=\"float:right;margin-top:-30px;margin-right:5px;\">{$OnlineStatus}</p><br><br><br>";
+                                }
+                                echo "</div></div></div>";
+                            }
+                        ?>
+                        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                    </div>
+                    <div id="column2" class="column">
+                        <div class="habblet-container ">
+                            <div class="cbb clearfix blue ">
+                                <h2 class="title">Who are these people?</h2>
+                                <div style="padding:5px">
+                                    The {hotelName} Hotel staff are people who have the power and authority to maintain the hotel. This covers everything
+                                    from banning users to hosting events, giving users credits and much more. To find a staff member in the hotel
+                                    you will need to look for a user who has a badge like the one below.
+                                    <br><br>
+                                    <center><img src="http://images.habbogroup.com/c_images/album1584/ADM.gif"></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+        <script type="text/javascript">
+            HabboView.run();
+        </script>
+
+        <!--[if lt IE 7]>
+            <script type="text/javascript">
+                Pngfix.doPngImageFix();
+            </script>
+        <![endif]-->
+        
+        <div id="footer" >
+            <script type="text/javascript">
+                var _adynamo_client = "11456ec8-221d-40a4-b01a-cf21b452ced3";
+                var _adynamo_width = 728;
+                var _adynamo_height = 90;
+            </script>
+            <script type="text/javascript" src="http://static.addynamo.net/ad/js/deliverAds.js"></script>
+        </div>
+    
+    </body>
+</html>

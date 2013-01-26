@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>{hotelName} - Home</title>
+        
+        <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/common.css" type="text/css">
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs2.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/visual.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/common.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/fullcontent.js"></script>
+        
+        <script type="text/javascript">
+            document.habboLoggedIn = true;
+            var habboName = "{username}";
+            var habboId = {userid};
+            var habboReqPath = "";
+            var habboStaticFilePath = "{url}/app/tpl/skins/Habbo";
+            var habboImagerUrl = "http://www.habbo.com/habbo-imaging/";
+            var habboPartner = "";
+            var habboDefaultClientPopupUrl = "{url}/client";
+            window.name = "habboMain";
+            if (typeof HabboClient != "undefined") {
+                HabboClient.windowName = "eac955c8dbc88172421193892a3e98fc7402021a";
+                HabboClient.maximizeWindow = true;
+            }
+        </script>
+        
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/settings.js"></script>
+        <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/settings.css" type="text/css">
+        
+        <!--[if IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie8.css" type="text/css">
+        <![endif]-->
+        <!--[if lt IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie.css" type="text/css" />
+        <![endif]-->
+        <!--[if lt IE 7]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie6.css" type="text/css" />
+            <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/pngfix.js"></script>
+            <script type="text/javascript">
+                try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {}
+            </script>
+            <style type="text/css">
+                body { behavior: url({url}/app/tpl/skins/Habbo/js/csshover.htc); }
+            </style>
+        <![endif]-->
+    </head>
+    
+    <body id="profile">
+    
+        <div id="overlay"></div>
+        <div id="header-container">
+            <div id="header" class="clearfix">
+                <h1><a href="{url}/"></a></h1>
+                <div id="subnavi">
+                    <div id="subnavi-user">
+                        <div style="margin-top:7px"><b>Fact:</b> {hotelName} Hotel opened on -- at --!</div>
+                    </div>
+                    <div id="subnavi-search">
+                        <div id="subnavi-search-upper">
+                            <ul id="subnavi-search-links">
+                                <li><a href="{url}/logout" style="color:#000">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="to-hotel">
+                        <a href="{url}/api.php" class="new-button green-button" target="eac955c8dbc88172421193892a3e98fc7402021a" onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {hotelName} Hotel</b><i></i></a>
+                    </div>
+                </div>
+                <ul id="navi">
+                    <li class="metab selected"><strong>{username}</strong><span></span></li>
+                    <li><a href="{url}/community">Community</a><span></span></li>
+                </ul>
+                <div id="habbos-online"><div class="rounded"><span>{online} members online</span></div></div>
+            </div>
+        </div>
+        <div id="content-container">
+            <div id="navi2-container" class="pngbg">
+                <div id="navi2" class="pngbg clearfix">
+                    <ul>
+                        <li class=" "><a href="{url}/me">Home</a></li>
+                        <li class=" selected last">Account Settings</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="container">
+                <div id="content" style="position: relative" class="clearfix">
+                    <div>
+                        <div class="content">
+                            <div class="habblet-container" style="float:left; width:210px;">
+                                <div class="cbb settings">
+                                    <h2 class="title">Account Settings</h2>
+                                    <div class="box-content">
+                                        <div id="settingsNavigation">
+                                            <ul>
+                                                <li class="selected">My Preferences</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cbb habboclub-tryout">
+                                    <h2 class="title">Join {hotelName} Club</h2>
+                                    <div class="box-content">
+                                        <div class="habboclub-banner-container habboclub-clothes-banner"></div>
+                                        <p class="habboclub-header">{hotelName} Club is our VIP members-only club: absolutely no riff-raff admitted! Members enjoy a wide range of benefits, including exclusive clothes, free gifts and an extended Friend List.</p>
+                                        <p class="habboclub-link"><a href="{url}/club">Check out {hotelName} Club &gt;&gt;</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="habblet-container " style="float:left; width: 560px;">
+                                <div class="cbb clearfix settings">
+                                    <h2 class="title">Change your profile</h2>
+                                    <div class="box-content">
+                                        <form method="post" id="profileForm">
+                                            <h3>Your motto</h3>
+                                            <p>Your motto is what other users will see on your {hotelName} Home page and when clicking your user in the Hotel.</p>
+                                            <p><label>Motto:<input type="text" name="acc_motto" size="32" maxlength="32" value="{motto}" id="avatarmotto"></label></p>
+                                            <h3>Your email address</h3>
+                                            <p>Your email address is what you may need to reset your password incase you forget it.</p>
+                                            <p><label>Email:<input type="text" name="acc_email" size="32" value="{email}" id="avatarmotto"></p>
+                                            <h3>Current Password</h3>
+                                            <p>Your current password is the password you use to login to the main website. Only fill this in if you wish to change your login password.</p>
+                                            <p><label>Password:<input type="password" name="acc_old_password" value="" id="avatarmotto"></p>
+                                            <h3>New Password</h3>
+                                            <p>Please only change this field if you wish to change your login password.</p>
+                                            <p><label>New Password:<input type="password" name="acc_new_password" value="" id="avatarmotto"></p>
+                                            <div class="settings-buttons">
+                                                <input type="submit" value="Save changes" name="account" class="submit" style="float:right">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    document.observe('dom:loaded', function() {
+                        CurrentRoomEvents.init();
+                    });
+                </script>
+            </div>
+            <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+            <script type="text/javascript">
+                HabboView.run();
+            </script>
+            <!--[if lt IE 7]>
+               <script type="text/javascript">
+                    Pngfix.doPngImageFix();
+                </script>
+            <![endif]-->
+        </div>
+        
+        <div id="footer" >
+            <script type="text/javascript">
+                var _adynamo_client = "11456ec8-221d-40a4-b01a-cf21b452ced3";
+                var _adynamo_width = 728;
+                var _adynamo_height = 90;
+            </script>
+            <script type="text/javascript" src="http://static.addynamo.net/ad/js/deliverAds.js"></script>
+        </div>
+    
+    </body>
+</html>

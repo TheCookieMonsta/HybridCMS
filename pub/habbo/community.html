@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>{hotelName} - Community</title>
+        
+        <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/common.css" type="text/css">
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs2.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/visual.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/common.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/fullcontent.js"></script>
+        
+        <script type="text/javascript">
+            document.habboLoggedIn = true;
+            var habboName = "{username}";
+            var habboId = {userid};
+            var habboReqPath = "";
+            var habboStaticFilePath = "{url}/app/tpl/skins/Habbo";
+            var habboImagerUrl = "http://www.habbo.com/habbo-imaging/";
+            var habboPartner = "";
+            var habboDefaultClientPopupUrl = "{url}/client";
+            window.name = "habboMain";
+            if (typeof HabboClient != "undefined") {
+                HabboClient.windowName = "eac955c8dbc88172421193892a3e98fc7402021a";
+                HabboClient.maximizeWindow = true;
+            }
+        </script>
+        
+        <!--[if IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie8.css" type="text/css">
+        <![endif]-->
+        <!--[if lt IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie.css" type="text/css" />
+        <![endif]-->
+        <!--[if lt IE 7]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie6.css" type="text/css" />
+            <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/pngfix.js"></script>
+            <script type="text/javascript">
+                try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {}
+            </script>
+            <style type="text/css">
+                body { behavior: url({url}/app/tpl/skins/Habbo/js/csshover.htc); }
+            </style>
+        <![endif]-->
+    </head>
+    
+    <body id="home">
+    
+        <div id="overlay"></div>
+        <div id="header-container">
+            <div id="header" class="clearfix">
+                <h1><a href="{url}/"></a></h1>
+                <div id="subnavi">
+                    <div id="subnavi-user">
+                        <div style="margin-top:7px"><b>Fact:</b> {hotelName} Hotel opened on -- at --!</div>
+                    </div>
+                    <div id="subnavi-search">
+                        <div id="subnavi-search-upper">
+                            <ul id="subnavi-search-links">
+                                <li><a href="{url}/logout" style="color:#000">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="to-hotel">
+                        <a href="{url}/api.php" class="new-button green-button" target="eac955c8dbc88172421193892a3e98fc7402021a" onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {hotelName} Hotel</b><i></i></a>
+                    </div>
+                </div>
+                <ul id="navi">
+                    <li class="metab"><a href="{url}/me">{username}</a><span></span></li>
+                    <li class="selected"><strong>Community</strong><span></span></li>
+                </ul>
+                <div id="habbos-online"><div class="rounded"><span>{online} members online</span></div></div>
+            </div>
+        </div>
+        <div id="content-container">
+            <div id="navi2-container" class="pngbg">
+                <div id="navi2" class="pngbg clearfix">
+                    <ul>
+                        <li class="selected">Community</li>
+                        <li><a href="{url}/news">News</a></li>
+                        <li class=" last"><a href="{url}/staff">Staff</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="container">
+                <div id="content" style="position: relative" class="clearfix">
+                    <div id="column1" class="column">
+                        <div class="habblet-container ">		
+                            <div class="cbb clearfix activehomes ">
+                                <h2 class="title">Random Users - Click Us!</h2>
+                                <div id="homes-habblet-list-container" class="habblet-list-container">
+                                    <img class="active-habbo-imagemap" src="{url}/app/tpl/skins/Habbo/images/activehomes/transparent_area.gif" width="435px" height="230px" usemap="#habbomap" />
+                                    <?php
+                                        $getRandom = mysql_query("SELECT id,username,look,motto,account_created,online FROM users ORDER BY RAND() LIMIT 18");
+                                        $i = 0;
+
+                                        while ($randomHabbo = mysql_fetch_assoc($getRandom))
+                                        {		 
+                                            echo '<div id="active-habbo-data-' . $i . '" class="active-habbo-data"> 
+                                                    <div class="active-habbo-data-container"> 
+                                                    <div class="active-name ' . (($randomHabbo['online'] == "1") ? 'online' : 'offline') . '">' . $randomHabbo['username'] . '</div> 
+                                                    Habbo created on: ' . date('d M, Y', $randomHabbo['account_created']) . '
+                                                    <p class="moto">' . $randomHabbo['motto'] . '</p> 
+                                                    </div> 
+                                                    </div>                
+                                                    <input type="hidden" id="active-habbo-url-' . $i . '"> 
+                                                    <input type="hidden" id="active-habbo-image-' . $i . '" class="active-habbo-image" value="http://www.habbo.com/habbo-imaging/avatarimage?figure=' . $randomHabbo['look'] . '&direction=4&head_direction=4" />';
+	
+                                            $i++;
+                                        }
+                                    ?>
+                                    <div id="placeholder-container">
+                                        <div id="active-habbo-image-placeholder-0" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-1" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-2" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-3" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-4" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-5" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-6" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-7" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-8" class="active-habbo-image-placeholder"></div>
+
+                                        <div id="active-habbo-image-placeholder-9" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-10" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-11" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-12" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-13" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-14" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-15" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-16" class="active-habbo-image-placeholder"></div>
+                                        <div id="active-habbo-image-placeholder-17" class="active-habbo-image-placeholder"></div>
+                                    </div>
+                                </div>
+                                <map id="habbomap" name="habbomap">
+                                    <area id="imagemap-area-0" shape="rect" coords="55,53,95,103" href="#" alt=""/>
+                                    <area id="imagemap-area-1" shape="rect" coords="120,53,160,103" href="#" alt=""/>
+                                    <area id="imagemap-area-2" shape="rect" coords="185,53,225,103" href="#" alt=""/>
+                                    <area id="imagemap-area-3" shape="rect" coords="250,53,290,103" href="#" alt=""/>
+                                    <area id="imagemap-area-4" shape="rect" coords="315,53,355,103" href="#" alt=""/>
+                                    <area id="imagemap-area-5" shape="rect" coords="380,53,420,103" href="#" alt=""/>
+                                    <area id="imagemap-area-6" shape="rect" coords="28,103,68,153" href="#" alt=""/>
+                                    <area id="imagemap-area-7" shape="rect" coords="93,103,133,153" href="#" alt=""/>
+                                    <area id="imagemap-area-8" shape="rect" coords="158,103,198,153" href="#" alt=""/>
+                                    <area id="imagemap-area-9" shape="rect" coords="223,103,263,153" href="#" alt=""/>
+                                    <area id="imagemap-area-10" shape="rect" coords="288,103,328,153" href="#" alt=""/>
+                                    <area id="imagemap-area-11" shape="rect" coords="353,103,393,153" href="#" alt=""/>
+                                    <area id="imagemap-area-12" shape="rect" coords="55,153,95,203" href="#" alt=""/>
+                                    <area id="imagemap-area-13" shape="rect" coords="120,153,160,203" href="#" alt=""/>
+                                    <area id="imagemap-area-14" shape="rect" coords="185,153,225,203" href="#" alt=""/>
+                                    <area id="imagemap-area-15" shape="rect" coords="250,153,290,203" href="#" alt=""/>
+                                    <area id="imagemap-area-16" shape="rect" coords="315,153,355,203" href="#" alt=""/>
+                                    <area id="imagemap-area-17" shape="rect" coords="380,153,420,203" href="#" alt=""/>
+                                </map>
+                                <script type="text/javascript">
+                                    var activeHabbosHabblet = new ActiveHabbosHabblet();
+                                    document.observe("dom:loaded", function() { activeHabbosHabblet.generateRandomImages(); });
+                                </script>
+                            </div>
+                        </div>
+                        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                    </div>
+                    <div id="column2" class="column">
+                        <div class="habblet-container "></div>
+                        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                        <div class="habblet-container news-promo">		
+                            <div class="cbb clearfix notitle ">
+                                <div id="newspromo">
+                                    <div id="topstories">
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-1})">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-1}">{newsTitle-1}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-1}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-1}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-2}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-2}">{newsTitle-2}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-2}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-2}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-3}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-3}">{newsTitle-3}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-3}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-3}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-4}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-4}">{newsTitle-4}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-4}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-4}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-5}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-5}">{newsTitle-5}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-5}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-5}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div id="topstories-nav" style="display: none"><a href="#" class="prev">&laquo; Previous</a><span>1</span> / 5<a href="#" class="next">Next &raquo;</a></div>
+                                    </div>
+                                    <ul class="widelist">
+                                        <li class="even"><a href="{url}/index.php?url=news&id={newsID-1}">{newsTitle-1} &raquo;</a><div class="newsitem-date">{newsDate-1}</div></li>            
+                                        <li class="odd"><a href="{url}/index.php?url=news&id={newsID-2}">{newsTitle-2} &raquo;</a><div class="newsitem-date">{newsDate-2}</div></li>            
+                                        <li class="last"><a href="/news">More news &raquo;</a></li>            
+                                    </ul>
+                                </div>
+                                <script type="text/javascript">
+                                    document.observe("dom:loaded", function() { NewsPromo.init(); });
+                                </script>
+                            </div>
+                        </div>
+                        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                document.observe('dom:loaded', function() {
+                    CurrentRoomEvents.init();
+                });
+            </script>
+        </div>
+        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+        <script type="text/javascript">
+            HabboView.run();
+        </script>
+
+        <!--[if lt IE 7]>
+            <script type="text/javascript">
+                Pngfix.doPngImageFix();
+            </script>
+        <![endif]-->
+        
+        <div id="footer" >
+            <script type="text/javascript">
+                var _adynamo_client = "11456ec8-221d-40a4-b01a-cf21b452ced3";
+                var _adynamo_width = 728;
+                var _adynamo_height = 90;
+            </script>
+            <script type="text/javascript" src="http://static.addynamo.net/ad/js/deliverAds.js"></script>
+        </div>
+    
+    </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>{hotelName} - Home</title>
+        
+        <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/common.css" type="text/css">
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs2.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/visual.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/libs.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/common.js"></script>
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/fullcontent.js"></script>
+        
+        <script type="text/javascript">
+            document.habboLoggedIn = true;
+            var habboName = "{username}";
+            var habboId = {userid};
+            var habboReqPath = "";
+            var habboStaticFilePath = "{url}/app/tpl/skins/Habbo";
+            var habboImagerUrl = "http://www.habbo.com/habbo-imaging/";
+            var habboPartner = "";
+            var habboDefaultClientPopupUrl = "{url}/client";
+            window.name = "habboMain";
+            if (typeof HabboClient != "undefined") {
+                HabboClient.windowName = "eac955c8dbc88172421193892a3e98fc7402021a";
+                HabboClient.maximizeWindow = true;
+            }
+        </script>
+        
+        <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/personal.css" type="text/css">
+        <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/habboclub.js"></script>
+        
+        <!--[if IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie8.css" type="text/css">
+        <![endif]-->
+        <!--[if lt IE 8]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie.css" type="text/css" />
+        <![endif]-->
+        <!--[if lt IE 7]>
+            <link rel="stylesheet" href="{url}/app/tpl/skins/Habbo/styles/ie6.css" type="text/css" />
+            <script type="text/javascript" src="{url}/app/tpl/skins/Habbo/js/pngfix.js"></script>
+            <script type="text/javascript">
+                try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {}
+            </script>
+            <style type="text/css">
+                body { behavior: url({url}/app/tpl/skins/Habbo/js/csshover.htc); }
+            </style>
+        <![endif]-->
+    </head>
+    
+    <body id="home">
+    
+        <div id="overlay"></div>
+        <div id="header-container">
+            <div id="header" class="clearfix">
+                <h1><a href="{url}/"></a></h1>
+                <div id="subnavi">
+                    <div id="subnavi-user">
+                        <div style="margin-top:7px"><b>Fact:</b> {hotelName} Hotel opened on -- at --!</div>
+                    </div>
+                    <div id="subnavi-search">
+                        <div id="subnavi-search-upper">
+                            <ul id="subnavi-search-links">
+                                <li><a href="{url}/logout" style="color:#000">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="to-hotel">
+                        <a href="{url}/api.php" class="new-button green-button" target="eac955c8dbc88172421193892a3e98fc7402021a" onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {hotelName} Hotel</b><i></i></a>
+                    </div>
+                </div>
+                <ul id="navi">
+                    <li class="metab selected"><strong>{username}</strong><span></span></li>
+                    <li><a href="{url}/community">Community</a><span></span></li>
+                </ul>
+                <div id="habbos-online"><div class="rounded"><span>{online} members online</span></div></div>
+            </div>
+        </div>
+        <div id="content-container">
+            <div id="navi2-container" class="pngbg">
+                <div id="navi2" class="pngbg clearfix">
+                    <ul>
+                        <li class="selected">Home</li>
+                        <li class=" last"><a href="{url}/account">Account Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="container">
+                <div id="content" style="position: relative" class="clearfix">
+                    <div id="column1" class="column">
+                        <div class="habblet-container ">		
+                            <div id="new-personal-info" style="background-image:url({url}/app/tpl/skins/Habbo/images/personal_info/hotel_views/htlview_us.png)">
+                                <div class="enter-hotel-btn">
+                                    <div class="open enter-btn">
+                                        <a href="{url}/api.php" target="eac955c8dbc88172421193892a3e98fc7402021a" onclick="HabboClient.openOrFocus(this); return false;">Enter {hotelName} Hotel<i></i></a>
+                                        <b></b>
+                                    </div>
+                                </div>
+                                <div id="habbo-plate"><img src="http://www.habbo.com/habbo-imaging/avatarimage?figure={figure}.gif" alt="{username}"></div>
+                                <div id="habbo-info">
+                                    <div id="motto-container" class="clearfix">			
+                                        <strong>{username}:</strong>
+                                        <div>
+                                            <span title="What's on your mind today?">{motto}</span>
+                                        </div>
+                                    </div>
+                                    <div id="motto-links" style="display: none"><a href="#" id="motto-cancel">Cancel</a></div>
+                                </div>
+                                <ul id="link-bar" class="clearfix">		
+                                    <li class="credits"><a href="{url}/credits">{coins}</a> Credits</li>
+                                    <li class="activitypoints"><a href="{url}/pixels">{activitypoints}</a> Pixels</li>
+                                </ul>
+                                <div id="habbo-feed">
+                                    <ul id="feed-items">
+                                        <li class="small" id="feed-lastlogin">Last signed in: {lastSignedIn}</li>
+                                    </ul>
+                                </div>
+                                <p class="last"></p>
+                            </div>
+                            <script type="text/javascript">
+                                HabboView.add(function() {
+                                    L10N.put("personal_info.motto_editor.spamming", "Don\'t spam me, bro!");
+                                    PersonalInfo.init("");
+                                });
+                            </script>
+                        </div>
+                        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                    </div>
+                    <div id="column2" class="column">
+                        <div class="habblet-container "></div>
+                        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                        <div class="habblet-container news-promo">		
+                            <div class="cbb clearfix notitle ">
+                                <div id="newspromo">
+                                    <div id="topstories">
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-1})">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-1}">{newsTitle-1}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-1}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-1}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-2}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-2}">{newsTitle-2}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-2}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-2}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-3}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-3}">{newsTitle-3}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-3}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-3}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-4}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-4}">{newsTitle-4}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-4}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-4}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div class="topstory" style="background-image: url({url}/r63/c_images/Top_Story_Images/{newsIMG-5}); display: none">
+                                            <h4>Latest news</h4>
+                                            <h3><a href="{url}/index.php?url=news&id={newsID-5}">{newsTitle-5}</a></h3>
+                                            <p class="summary">
+                                                {newsCaption-5}
+                                            </p>
+                                            <p>
+                                                <a href="{url}/index.php?url=news&id={newsID-5}">Read more &raquo;</a>
+                                            </p>
+                                        </div>
+                                        <div id="topstories-nav" style="display: none"><a href="#" class="prev">&laquo; Previous</a><span>1</span> / 5<a href="#" class="next">Next &raquo;</a></div>
+                                    </div>
+                                    <ul class="widelist">
+                                        <li class="even"><a href="{url}/index.php?url=news&id={newsID-1}">{newsTitle-1} &raquo;</a><div class="newsitem-date">{newsDate-1}</div></li>            
+                                        <li class="odd"><a href="{url}/index.php?url=news&id={newsID-2}">{newsTitle-2} &raquo;</a><div class="newsitem-date">{newsDate-2}</div></li>            
+                                        <li class="last"><a href="/news">More news &raquo;</a></li>            
+                                    </ul>
+                                </div>
+                                <script type="text/javascript">
+                                    document.observe("dom:loaded", function() { NewsPromo.init(); });
+                                </script>
+                            </div>
+                        </div>
+                        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                document.observe('dom:loaded', function() {
+                    CurrentRoomEvents.init();
+                });
+            </script>
+        </div>
+        <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+        <script type="text/javascript">
+            HabboView.run();
+        </script>
+
+        <!--[if lt IE 7]>
+            <script type="text/javascript">
+                Pngfix.doPngImageFix();
+            </script>
+        <![endif]-->
+        
+        <div id="footer" >
+            <script type="text/javascript">
+                var _adynamo_client = "11456ec8-221d-40a4-b01a-cf21b452ced3";
+                var _adynamo_width = 728;
+                var _adynamo_height = 90;
+            </script>
+            <script type="text/javascript" src="http://static.addynamo.net/ad/js/deliverAds.js"></script>
+        </div>
+    
+    </body>
+</html>

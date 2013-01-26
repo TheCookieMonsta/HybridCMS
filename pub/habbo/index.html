@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>{$site->name} - {$site->desc}</title>
+        
+        <link rel="stylesheet" href="{$site->path}/pub/habbo/styles/frontpage.css" type="text/css">
+        <script type="text/javascript" src="{$site->path}/pub/habbo/js/libs2.js"></script>
+        <script type="text/javascript" src="{$site->path}/pub/habbo/js/landing.js"></script>
+        
+        <script type="text/javascript">
+            document.habboLoggedIn = true;
+            var habboName = null;
+            var habboId = null;
+            var habboReqPath = "";
+            var habboStaticFilePath = "{$site->path}/pub/habbo/";
+            var habboImagerUrl = "http://www.habbo.com/habbo-imaging/";
+            var habboPartner = "";
+            var habboDefaultClientPopupUrl = "{url}/client";
+            window.name = "habboMain";
+            if (typeof HabboClient != "undefined") {
+                HabboClient.windowName = "client";
+                HabboClient.maximizeWindow = true;
+            }
+        </script>
+        
+        <style type="text/css">
+            body {
+                background-color: #000000;
+            }
+            #footer .footer-links   { color: #666666; }
+            #footer .footer-links a { color: #ffffff; }
+            #footer .copyright      { color: #666666; }
+            #footer #compact-tags-container span, #footer #compact-tags-container a { color: #333333; }
+            
+            input[type="submit"] {
+                background: url('{$site->path}/pub/habbo/images/lgn_btn.png') top;
+                font: bold 13px arial,sans-serif;
+                line-height: 33px;
+                color: white;
+                height: 33px;
+                width: 96px;
+                border: 0;
+            }
+            input[type="submit"]:hover {
+                background-position: bottom;
+                cursor: pointer;
+            }
+        </style>
+        
+        <!--[if IE 8]>
+            <link rel="stylesheet" href="{$site->path}/pub/habbo/styles/ie8.css" type="text/css">
+        <![endif]-->
+        <!--[if lt IE 8]>
+            <link rel="stylesheet" href="{$site->path}/pub/habbo/styles/ie.css" type="text/css" />
+        <![endif]-->
+        <!--[if lt IE 7]>
+            <link rel="stylesheet" href="{$site->path}/pub/habbo/styles/ie6.css" type="text/css" />
+            <script type="text/javascript" src="{$site->path}/pub/habbo/js/pngfix.js"></script>
+            <script type="text/javascript">
+                try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {}
+            </script>
+            <style type="text/css">
+                body { behavior: url({$site->path}/pub/habbo/js/csshover.htc); }
+            </style>
+        <![endif]-->
+    </head>
+    
+    <body id="frontpage">
+    
+        <div id="overlay"></div>
+        <div id="site-header">
+            <form id="loginformitem" name="loginformitem" method="post">
+                <?php if(isset($template->form->error)) { ?>
+                    <div id="loginerrorfieldwrapper">
+                        <div id="loginerrorfield">
+                            <div><?php echo $template->form->error; ?></div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <div style="clear: both;"></div>
+                <div id="site-header-content">
+                    <div id="habbo-logo"></div>
+                    <div id="login-form">
+                        <div id="login-form-email">
+                            <label for="login-username" class="login-text">Username</label>
+                            <input tabindex="3" type="text" class="login-field" name="log_username" id="login-username" value="" maxlength="48">
+                        </div>
+                        <div id="login-form-password">
+                            <label for="login-password" class="login-text">Password</label>
+                            <input tabindex="4" type="password" class="login-field" name="log_password" id="login-password" maxlength="32">
+                        </div>
+                        <div id="login-form-submit">
+                            <input type="submit" value="Login" name="login">
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        HabboView.add(function() {
+                            LandingPage.init();
+                            if (!LandingPage.focusForced) {
+                                LandingPage.fieldFocus('login-username');
+                            }
+                        });
+                    </script>
+                </div>
+            </form>
+        </div>
+        <div id="fp-container">
+            <div id="content">
+                <div id="column1" class="column">
+                    <div class="habblet-container ">		
+                        <div style="width: 890px; margin: 0 auto">
+                            <div id="tagline">{$site->name} Hotel... {$site->desc}</div>
+                        </div>
+                        <div id="frontpage-image-container">
+                            <div id="join-now-button-container">
+                                <div id="join-now-button-wrapper-fb">
+                                    <div class="join-now-alternative">&nbsp;</div>
+                                    <div class="join-now-button">
+                                        <a class="join-now-link" href="#" onclick="assistedLogin(FB); return false;"> 
+                                            <span class="join-now-text-big">Play {$site->name}</span>
+                                            <span class="join-now-text-small">with<span class="fbword">Facebook</span></span>
+                                        </a>
+                                        <span class="close"></span>
+                                    </div>
+                                </div>
+                                <div id="join-now-button-wrapper">
+                                    <div class="join-now-alternative">
+                                        <a href="{url}/register" class="newusers" onclick="startRegistration(this); return false;"><b>New to {$site->name}?</b><span style="color: #8f8f8f;">Click here to</span></a>
+                                    </div>
+                                    <div class="join-now-button">
+                                        <a class="join-now-link" id="register-link" href="{url}/register" onclick="startRegistration(this); return false;"> 
+                                            <span class="join-now-text-big">Join now</span>
+                                            <span class="join-now-text-small">for Free</span>
+                                        </a>
+                                        <span class="close"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                function startRegistration(elem) {
+                                    targetUrl = elem.href;
+                                    if (typeof targetUrl == "undefined") {
+                                        targetUrl = "{url}/register";
+                                    }
+                                    window.location.href = targetUrl;
+                                }
+                            </script>
+                            <div id="people-inside">
+                                <b><span><span class="stats-fig">{$hybrid->online}</span> players online now</span></b>
+                                <i></i>
+                            </div>
+                            <a href="{url}/register" id="frontpage-image" style="background-image: url('{$site->path}/pub/habbo/images/loginbackdrop.png')" onclick="startRegistration(this); return false;"></a>
+                        </div>
+                        <script type="text/javascript">
+                            document.observe("dom:loaded", function() {
+                                LandingPage.checkLoginButtonSetTimer();
+                            });
+                        </script>
+                    </div>
+                    <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+                </div>
+                <!--[if lt IE 7]>
+                    <script type="text/javascript">
+                        Pngfix.doPngImageFix();
+                    </script>
+                <![endif]-->
+            </div>
+        </div>
+        <script type="text/javascript">
+            if (typeof HabboView != "undefined") {
+                HabboView.run();
+            }
+        </script>
+    
+    </body>
+</html>
